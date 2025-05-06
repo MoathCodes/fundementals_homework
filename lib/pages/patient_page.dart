@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fundementals_homework/core/settings/settings_provider.dart';
 import 'package:fundementals_homework/widget/single_slot_selection.dart';
+import 'package:intl/intl.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class PatientPage extends ConsumerWidget {
@@ -18,7 +19,7 @@ class PatientPage extends ConsumerWidget {
         ),
       ],
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Gap(24),
           Switch(
@@ -83,6 +84,11 @@ class PatientPage extends ConsumerWidget {
               ),
             ],
           ),
+          Gap(24),
+          if (settings.selectedSlot >= 0) ...[
+            Text(NumberFormat.currency(locale: 'ar_KSA').currencySymbol),
+          ],
+          PrimaryButton(child: Text("Book Appointment"), onPressed: () {}),
         ],
       ),
     );

@@ -57,6 +57,13 @@ class _AboutDialog extends StatelessWidget {
                 PrimaryButton(
                   leading: Icon(BootstrapIcons.github),
                   child: Text("Source Code"),
+                  onPressed: () {
+                    html.HTMLAnchorElement()
+                      ..href =
+                          "https://github.com/MoathCodes/fundementals_homework"
+                      ..target = "_blank"
+                      ..click();
+                  },
                 ),
                 PrimaryButton(
                   leading: Icon(BootstrapIcons.paperclip),
