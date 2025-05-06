@@ -10,5 +10,6 @@ abstract class Settings with _$Settings {
     required int selectedSlot,
     required bool isUrgent,
     required bool isLoggedIn,
+    required bool isUMLMode,
   }) = _Settings;
 }

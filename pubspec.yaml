@@ -41,6 +41,7 @@ dependencies:
   freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
   intl: ^0.20.2
+  flutter_svg: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -72,7 +73,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/Computer Fundementals Pair Homework (Moath, Yazan).pdf
+    - assets/HW.pdf
+    - assets/Saudi_Riyal_Symbol.svg
+    - assets/UML.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Settings {
 
- bool get allowPayment; List<String> get slots; int get selectedSlot; bool get isUrgent; bool get isLoggedIn;
+ bool get allowPayment; List<String> get slots; int get selectedSlot; bool get isUrgent; bool get isLoggedIn; bool get isUMLMode;
 /// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $SettingsCopyWith<Settings> get copyWith => _$SettingsCopyWithImpl<Settings>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Settings&&(identical(other.allowPayment, allowPayment) || other.allowPayment == allowPayment)&&const DeepCollectionEquality().equals(other.slots, slots)&&(identical(other.selectedSlot, selectedSlot) || other.selectedSlot == selectedSlot)&&(identical(other.isUrgent, isUrgent) || other.isUrgent == isUrgent)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Settings&&(identical(other.allowPayment, allowPayment) || other.allowPayment == allowPayment)&&const DeepCollectionEquality().equals(other.slots, slots)&&(identical(other.selectedSlot, selectedSlot) || other.selectedSlot == selectedSlot)&&(identical(other.isUrgent, isUrgent) || other.isUrgent == isUrgent)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn)&&(identical(other.isUMLMode, isUMLMode) || other.isUMLMode == isUMLMode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,allowPayment,const DeepCollectionEquality().hash(slots),selectedSlot,isUrgent,isLoggedIn);
+int get hashCode => Object.hash(runtimeType,allowPayment,const DeepCollectionEquality().hash(slots),selectedSlot,isUrgent,isLoggedIn,isUMLMode);
 
 @override
 String toString() {
-  return 'Settings(allowPayment: $allowPayment, slots: $slots, selectedSlot: $selectedSlot, isUrgent: $isUrgent, isLoggedIn: $isLoggedIn)';
+  return 'Settings(allowPayment: $allowPayment, slots: $slots, selectedSlot: $selectedSlot, isUrgent: $isUrgent, isLoggedIn: $isLoggedIn, isUMLMode: $isUMLMode)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $SettingsCopyWith<$Res>  {
   factory $SettingsCopyWith(Settings value, $Res Function(Settings) _then) = _$SettingsCopyWithImpl;
 @useResult
 $Res call({
- bool allowPayment, List<String> slots, int selectedSlot, bool isUrgent, bool isLoggedIn
+ bool allowPayment, List<String> slots, int selectedSlot, bool isUrgent, bool isLoggedIn, bool isUMLMode
 });
 
 
@@ -63,13 +63,14 @@ class _$SettingsCopyWithImpl<$Res>
 
 /// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? allowPayment = null,Object? slots = null,Object? selectedSlot = null,Object? isUrgent = null,Object? isLoggedIn = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? allowPayment = null,Object? slots = null,Object? selectedSlot = null,Object? isUrgent = null,Object? isLoggedIn = null,Object? isUMLMode = null,}) {
   return _then(_self.copyWith(
 allowPayment: null == allowPayment ? _self.allowPayment : allowPayment // ignore: cast_nullable_to_non_nullable
 as bool,slots: null == slots ? _self.slots : slots // ignore: cast_nullable_to_non_nullable
 as List<String>,selectedSlot: null == selectedSlot ? _self.selectedSlot : selectedSlot // ignore: cast_nullable_to_non_nullable
 as int,isUrgent: null == isUrgent ? _self.isUrgent : isUrgent // ignore: cast_nullable_to_non_nullable
 as bool,isLoggedIn: null == isLoggedIn ? _self.isLoggedIn : isLoggedIn // ignore: cast_nullable_to_non_nullable
+as bool,isUMLMode: null == isUMLMode ? _self.isUMLMode : isUMLMode // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -81,7 +82,7 @@ as bool,
 
 
 class _Settings implements Settings {
-  const _Settings({required this.allowPayment, required final  List<String> slots, required this.selectedSlot, required this.isUrgent, required this.isLoggedIn}): _slots = slots;
+  const _Settings({required this.allowPayment, required final  List<String> slots, required this.selectedSlot, required this.isUrgent, required this.isLoggedIn, required this.isUMLMode}): _slots = slots;
   
 
 @override final  bool allowPayment;
@@ -95,6 +96,7 @@ class _Settings implements Settings {
 @override final  int selectedSlot;
 @override final  bool isUrgent;
 @override final  bool isLoggedIn;
+@override final  bool isUMLMode;
 
 /// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
@@ -106,16 +108,16 @@ _$SettingsCopyWith<_Settings> get copyWith => __$SettingsCopyWithImpl<_Settings>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Settings&&(identical(other.allowPayment, allowPayment) || other.allowPayment == allowPayment)&&const DeepCollectionEquality().equals(other._slots, _slots)&&(identical(other.selectedSlot, selectedSlot) || other.selectedSlot == selectedSlot)&&(identical(other.isUrgent, isUrgent) || other.isUrgent == isUrgent)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Settings&&(identical(other.allowPayment, allowPayment) || other.allowPayment == allowPayment)&&const DeepCollectionEquality().equals(other._slots, _slots)&&(identical(other.selectedSlot, selectedSlot) || other.selectedSlot == selectedSlot)&&(identical(other.isUrgent, isUrgent) || other.isUrgent == isUrgent)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn)&&(identical(other.isUMLMode, isUMLMode) || other.isUMLMode == isUMLMode));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,allowPayment,const DeepCollectionEquality().hash(_slots),selectedSlot,isUrgent,isLoggedIn);
+int get hashCode => Object.hash(runtimeType,allowPayment,const DeepCollectionEquality().hash(_slots),selectedSlot,isUrgent,isLoggedIn,isUMLMode);
 
 @override
 String toString() {
-  return 'Settings(allowPayment: $allowPayment, slots: $slots, selectedSlot: $selectedSlot, isUrgent: $isUrgent, isLoggedIn: $isLoggedIn)';
+  return 'Settings(allowPayment: $allowPayment, slots: $slots, selectedSlot: $selectedSlot, isUrgent: $isUrgent, isLoggedIn: $isLoggedIn, isUMLMode: $isUMLMode)';
 }
 
 
@@ -126,7 +128,7 @@ abstract mixin class _$SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res>
   factory _$SettingsCopyWith(_Settings value, $Res Function(_Settings) _then) = __$SettingsCopyWithImpl;
 @override @useResult
 $Res call({
- bool allowPayment, List<String> slots, int selectedSlot, bool isUrgent, bool isLoggedIn
+ bool allowPayment, List<String> slots, int selectedSlot, bool isUrgent, bool isLoggedIn, bool isUMLMode
 });
 
 
@@ -143,13 +145,14 @@ class __$SettingsCopyWithImpl<$Res>
 
 /// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? allowPayment = null,Object? slots = null,Object? selectedSlot = null,Object? isUrgent = null,Object? isLoggedIn = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? allowPayment = null,Object? slots = null,Object? selectedSlot = null,Object? isUrgent = null,Object? isLoggedIn = null,Object? isUMLMode = null,}) {
   return _then(_Settings(
 allowPayment: null == allowPayment ? _self.allowPayment : allowPayment // ignore: cast_nullable_to_non_nullable
 as bool,slots: null == slots ? _self._slots : slots // ignore: cast_nullable_to_non_nullable
 as List<String>,selectedSlot: null == selectedSlot ? _self.selectedSlot : selectedSlot // ignore: cast_nullable_to_non_nullable
 as int,isUrgent: null == isUrgent ? _self.isUrgent : isUrgent // ignore: cast_nullable_to_non_nullable
 as bool,isLoggedIn: null == isLoggedIn ? _self.isLoggedIn : isLoggedIn // ignore: cast_nullable_to_non_nullable
+as bool,isUMLMode: null == isUMLMode ? _self.isUMLMode : isUMLMode // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

@@ -39,7 +39,8 @@ class SettingsNotifier extends _$SettingsNotifier {
       isUrgent: false,
       slots: [],
       selectedSlot: -1,
-      isLoggedIn: true,
+      isLoggedIn: false,
+      isUMLMode: false,
     );
   }
 
@@ -71,5 +72,9 @@ class SettingsNotifier extends _$SettingsNotifier {
 
   void setSlots(List<String> slots) {
     state = state.copyWith(slots: slots);
+  }
+
+  void setUMLMode(bool value) {
+    state = state.copyWith(isUMLMode: value);
   }
 }

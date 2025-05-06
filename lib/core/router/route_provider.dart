@@ -29,16 +29,16 @@ GoRouter appRouter(Ref ref) {
 List<AppRoute> routes(Ref ref) {
   return [
     AppRoute(
-      path: '/patient',
-      label: 'Patient',
-      icon: BootstrapIcons.clock,
-      child: const PatientPageContainer(),
-    ),
-    AppRoute(
       path: '/doctor',
       label: 'Doctor',
       icon: BootstrapIcons.book,
       child: const DoctorPage(),
+    ),
+    AppRoute(
+      path: '/patient',
+      label: 'Patient',
+      icon: BootstrapIcons.clock,
+      child: const PatientPageContainer(),
     ),
   ];
 }

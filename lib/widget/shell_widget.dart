@@ -3,6 +3,7 @@ import 'dart:js_interop';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fundementals_homework/core/router/route_provider.dart';
+import 'package:fundementals_homework/core/settings/settings_provider.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
@@ -31,7 +32,7 @@ class ShellWidget extends ConsumerStatefulWidget {
 }
 
 class _AboutDialog extends StatelessWidget {
-  const _AboutDialog({super.key});
+  const _AboutDialog();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class _AboutDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "This project was a homework for our course (CCS 3221 - Computing Fundamentals) under supervions of Prof. Naif Albahooth,\nThe homework was about making a UML diagram for a system, and we decided to make a mockup of said system.\nIf would like to see how I made this project and the source code, please checkout my github repo.",
+              "This project was a homework for our course (CCS 3221 - Computing Fundamentals) under supervisions of Prof. Naif Albahooth,\nThe homework was about making a UML diagram for a system, and we decided to make a mockup of said system.\nIf would like to see how I made this project and the source code, please checkout my github repo.",
             ),
             Text("""
     Team Members:
@@ -66,12 +67,26 @@ class _AboutDialog extends StatelessWidget {
                   },
                 ),
                 PrimaryButton(
+                  leading: Icon(BootstrapIcons.download),
+                  child: Text("Download Full UML"),
+                  onPressed: () async {
+                    final ByteData bytes = await rootBundle.load(r'UML.svg');
+                    final list = bytes.buffer.asUint8List().buffer.toJS;
+                    final blob = html.Blob([list].toJS);
+                    final url = html.URL.createObjectURL(blob);
+                    html.HTMLAnchorElement()
+                      ..href = url
+                      ..setAttribute('download', 'HeartFlowUML.svg')
+                      ..click();
+                    html.URL.revokeObjectURL(url);
+                  },
+                ),
+
+                PrimaryButton(
                   leading: Icon(BootstrapIcons.paperclip),
                   child: Text("PDF homework"),
                   onPressed: () async {
-                    final ByteData bytes = await rootBundle.load(
-                      r'assets/Computer Fundementals Pair Homework (Moath, Yazan).pdf',
-                    );
+                    final ByteData bytes = await rootBundle.load(r'HW.pdf');
                     final list = bytes.buffer.asUint8List().buffer.toJS;
                     final blob = html.Blob(
                       [list].toJS,
@@ -80,9 +95,19 @@ class _AboutDialog extends StatelessWidget {
                     final url = html.URL.createObjectURL(blob);
                     html.HTMLAnchorElement()
                       ..href = url
-                      ..setAttribute('download', 'sample.pdf')
+                      ..setAttribute('download', 'HW_Moath_Yazan.pdf')
                       ..click();
                     html.URL.revokeObjectURL(url);
+                  },
+                ),
+                PrimaryButton(
+                  leading: Icon(BootstrapIcons.github),
+                  child: Text("Yazan's Github"),
+                  onPressed: () {
+                    html.HTMLAnchorElement()
+                      ..href = "https://github.com/Vormods"
+                      ..target = "_blank"
+                      ..click();
                   },
                 ),
               ],
@@ -108,6 +133,8 @@ class _ShellWidgetState extends ConsumerState<ShellWidget> {
   Widget build(BuildContext context) {
     final isExpanded = ref.watch(shellExpansionProvider);
     final routes = ref.read(routesProvider);
+    final settings = ref.watch(settingsNotifierProvider);
+    final settingsEditor = ref.read(settingsNotifierProvider.notifier);
     return Scaffold(
       child: ResizablePanel.horizontal(
         children: [
@@ -131,6 +158,16 @@ class _ShellWidgetState extends ConsumerState<ShellWidget> {
                 spacing: 4,
                 children: [
                   NavigationLabel(child: Text("♥️ HeartFlow").h3),
+
+                  NavigationButton(
+                    label: Text("Set UML Mode"),
+                    child: Switch(
+                      value: settings.isUMLMode,
+                      onChanged: (value) {
+                        settingsEditor.setUMLMode(value);
+                      },
+                    ),
+                  ),
                   NavigationDivider(),
                   ...routes.map(
                     (e) => NavigationItem(

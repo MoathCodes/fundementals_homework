@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:fundementals_homework/core/settings/settings_provider.dart';
 import 'package:fundementals_homework/widget/single_slot_selection.dart';
-import 'package:intl/intl.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
 class PatientPage extends ConsumerWidget {
@@ -50,10 +50,10 @@ class PatientPage extends ConsumerWidget {
                 content: Column(
                   children: [
                     Text(
-                      "Since this is an Urgent Situation, we automaticlly selected the nearest time",
+                      "Since this is an Urgent Situation, we automatically selected the nearest time",
                     ),
                     Text(
-                      "Your Apointment time is: ${settings.slots[settings.selectedSlot]}",
+                      "Your Appointment time is: ${settings.slots[settings.selectedSlot]}",
                     ).bold,
                   ],
                 ),
@@ -78,7 +78,7 @@ class PatientPage extends ConsumerWidget {
                 children: [
                   MenuLabel(
                     leading: Icon(BootstrapIcons.hospital),
-                    child: Text("Dr. Khaled Kashmeri"),
+                    child: Text("Dr. Khalid Kashmiri"),
                   ),
                 ],
               ),
@@ -86,9 +86,79 @@ class PatientPage extends ConsumerWidget {
           ),
           Gap(24),
           if (settings.selectedSlot >= 0) ...[
-            Text(NumberFormat.currency(locale: 'ar_KSA').currencySymbol),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+              children: [
+                Text("Before 15% VAT:").bold.xSmall,
+                Row(
+                  children: [
+                    Text(
+                      (69.420 - (69.420 * 0.130434783)).toStringAsFixed(2),
+                    ).xSmall.muted,
+                    SvgPicture.asset(
+                      r'Saudi_Riyal_Symbol.svg',
+                      color: Colors.gray.shade400,
+                      height: 16,
+                      width: 16,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+              children: [
+                Text("15% VAT:").muted.xSmall,
+                Row(
+                  children: [
+                    Text(
+                      (69.420 * 0.130434783).toStringAsFixed(2),
+                    ).xSmall.muted,
+                    SvgPicture.asset(
+                      r'Saudi_Riyal_Symbol.svg',
+                      color: Colors.gray.shade400,
+
+                      height: 16,
+                      width: 16,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Total:").bold,
+                Row(
+                  children: [
+                    Text('${69.420}', style: TextStyle(color: Colors.green)),
+                    SvgPicture.asset(
+                      r'Saudi_Riyal_Symbol.svg',
+                      color: Colors.green,
+
+                      height: 16,
+                      width: 16,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ],
-          PrimaryButton(child: Text("Book Appointment"), onPressed: () {}),
+          Gap(24),
+          Text(
+            "ⓘ Your card information is saved and secured.",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.green),
+          ).xSmall,
+          PrimaryButton(
+            onPressed: () {},
+            enabled: settings.selectedSlot >= 0,
+            leading: Icon(BootstrapIcons.paypal),
+            alignment: Alignment.center,
+            child: Text("Book Appointment"),
+          ),
         ],
       ),
     );
