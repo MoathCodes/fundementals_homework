@@ -9,19 +9,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 import 'package:web/web.dart' as html;
 
-part 'shell_widget.g.dart';
 
-@riverpod
-class ShellExpansion extends _$ShellExpansion {
-  @override
-  bool build() {
-    return true;
-  }
-
-  void toggleExpand() {
-    state = !state;
-  }
-}
 
 class ShellWidget extends ConsumerStatefulWidget {
   final Widget child;
@@ -131,7 +119,6 @@ class _ShellWidgetState extends ConsumerState<ShellWidget> {
   final panelController = AbsoluteResizablePaneController(220);
   @override
   Widget build(BuildContext context) {
-    final isExpanded = ref.watch(shellExpansionProvider);
     final routes = ref.read(routesProvider);
     final settings = ref.watch(settingsNotifierProvider);
     final settingsEditor = ref.read(settingsNotifierProvider.notifier);
@@ -148,7 +135,6 @@ class _ShellWidgetState extends ConsumerState<ShellWidget> {
                 backgroundColor: Theme.of(context).colorScheme.card,
                 labelPosition: NavigationLabelPosition.end,
                 // alignment: NavigationRailAlignment.start,
-                expanded: isExpanded,
                 labelType: NavigationLabelType.expanded,
                 index: routes.indexWhere(
                   (element) =>

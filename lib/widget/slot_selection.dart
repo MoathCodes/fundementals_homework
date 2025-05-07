@@ -52,9 +52,9 @@ class _SlotSelectionState extends ConsumerState<SlotSelection> {
     final settingsEditor = ref.read(settingsNotifierProvider.notifier);
     return OutlinedContainer(
       width: 700,
-      height: 450,
       padding: EdgeInsets.all(8),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         spacing: 10,
         children: [
           Text("Select Available Time Slot").h2,
@@ -67,7 +67,7 @@ class _SlotSelectionState extends ConsumerState<SlotSelection> {
                   settingsEditor.setSlots([]);
                 },
               ),
-              SecondaryButton(
+              Button.primary(
                 child: Text("Select All"),
                 onPressed: () {
                   settingsEditor.setSlots(widget.slots);
@@ -94,6 +94,15 @@ class _SlotSelectionState extends ConsumerState<SlotSelection> {
                 ),
               ],
             ),
+          ),
+          Switch(
+            leading: Text("Allow Payment:").h3,
+            value: settings.allowPayment,
+            onChanged: (value) {
+              ref
+                  .watch(settingsNotifierProvider.notifier)
+                  .setAllowPayment(value);
+            },
           ),
         ],
       ),

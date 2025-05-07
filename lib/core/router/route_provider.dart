@@ -19,7 +19,7 @@ GoRouter appRouter(Ref ref) {
 
   return GoRouter(
     routes: _generateRoutes(routes),
-    initialLocation: routes.first.path,
+    initialLocation: '/doctor',
     errorBuilder: (context, state) => NotFoundPage(),
   );
 }

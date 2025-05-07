@@ -35,12 +35,12 @@ class SettingsNotifier extends _$SettingsNotifier {
   @override
   Settings build() {
     return Settings(
-      allowPayment: true,
+      allowPayment: false,
       isUrgent: TriState.idle,
       slots: [],
       selectedSlot: -1,
       isLoggedIn: false,
-      isUMLMode: true,
+      isUMLMode: false,
       isBooked: false,
       isPaymentPage: false,
     );
