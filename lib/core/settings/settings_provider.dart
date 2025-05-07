@@ -36,11 +36,13 @@ class SettingsNotifier extends _$SettingsNotifier {
   Settings build() {
     return Settings(
       allowPayment: true,
-      isUrgent: false,
+      isUrgent: TriState.idle,
       slots: [],
       selectedSlot: -1,
       isLoggedIn: false,
-      isUMLMode: false,
+      isUMLMode: true,
+      isBooked: false,
+      isPaymentPage: false,
     );
   }
 
@@ -58,12 +60,26 @@ class SettingsNotifier extends _$SettingsNotifier {
     state = state.copyWith(allowPayment: value);
   }
 
+  void setIsBooked(bool value) {
+    state = state.copyWith(isBooked: value);
+  }
+
   void setIsLoggedIn(bool value) {
     state = state.copyWith(isLoggedIn: value);
   }
 
-  void setIsUrgent(bool value) {
-    state = state.copyWith(isUrgent: value);
+  void setIsPaymentPage(bool value) {
+    state = state.copyWith(isPaymentPage: value);
+  }
+
+  void setIsUrgent(bool value, {bool reset = false}) {
+    if (reset) {
+      state = state.copyWith(isUrgent: TriState.idle);
+    } else {
+      state = state.copyWith(
+        isUrgent: value ? TriState.active : TriState.inactive,
+      );
+    }
   }
 
   void setSelectedSlot(int value) {

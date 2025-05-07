@@ -42,6 +42,7 @@ dependencies:
   json_annotation: ^4.9.0
   intl: ^0.20.2
   flutter_svg: ^2.1.0
+  rive: ^0.13.20
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,7 @@ flutter:
     - assets/HW.pdf
     - assets/Saudi_Riyal_Symbol.svg
     - assets/UML.svg
+    - assets/Animation.riv
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

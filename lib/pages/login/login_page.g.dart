@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'settings_provider.dart';
+part of 'login_page.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$settingsNotifierHash() => r'3b133aa974bc2c80ad416917188df26d4d1d0393';
+String _$authLoginHash() => r'd8c193f74673c9f90b78853ee6828500ca237cb9';
 
-/// See also [SettingsNotifier].
-@ProviderFor(SettingsNotifier)
-final settingsNotifierProvider =
-    NotifierProvider<SettingsNotifier, Settings>.internal(
-      SettingsNotifier.new,
-      name: r'settingsNotifierProvider',
+/// See also [AuthLogin].
+@ProviderFor(AuthLogin)
+final authLoginProvider =
+    AutoDisposeAsyncNotifierProvider<AuthLogin, bool>.internal(
+      AuthLogin.new,
+      name: r'authLoginProvider',
       debugGetCreateSourceHash:
           const bool.fromEnvironment('dart.vm.product')
               ? null
-              : _$settingsNotifierHash,
+              : _$authLoginHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$SettingsNotifier = Notifier<Settings>;
+typedef _$AuthLogin = AutoDisposeAsyncNotifier<bool>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

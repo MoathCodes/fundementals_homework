@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Settings {
 
- bool get allowPayment; List<String> get slots; int get selectedSlot; bool get isUrgent; bool get isLoggedIn; bool get isUMLMode;
+ bool get allowPayment; List<String> get slots; int get selectedSlot; TriState get isUrgent; bool get isLoggedIn; bool get isUMLMode; bool get isBooked; bool get isPaymentPage;
 /// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $SettingsCopyWith<Settings> get copyWith => _$SettingsCopyWithImpl<Settings>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Settings&&(identical(other.allowPayment, allowPayment) || other.allowPayment == allowPayment)&&const DeepCollectionEquality().equals(other.slots, slots)&&(identical(other.selectedSlot, selectedSlot) || other.selectedSlot == selectedSlot)&&(identical(other.isUrgent, isUrgent) || other.isUrgent == isUrgent)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn)&&(identical(other.isUMLMode, isUMLMode) || other.isUMLMode == isUMLMode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Settings&&(identical(other.allowPayment, allowPayment) || other.allowPayment == allowPayment)&&const DeepCollectionEquality().equals(other.slots, slots)&&(identical(other.selectedSlot, selectedSlot) || other.selectedSlot == selectedSlot)&&(identical(other.isUrgent, isUrgent) || other.isUrgent == isUrgent)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn)&&(identical(other.isUMLMode, isUMLMode) || other.isUMLMode == isUMLMode)&&(identical(other.isBooked, isBooked) || other.isBooked == isBooked)&&(identical(other.isPaymentPage, isPaymentPage) || other.isPaymentPage == isPaymentPage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,allowPayment,const DeepCollectionEquality().hash(slots),selectedSlot,isUrgent,isLoggedIn,isUMLMode);
+int get hashCode => Object.hash(runtimeType,allowPayment,const DeepCollectionEquality().hash(slots),selectedSlot,isUrgent,isLoggedIn,isUMLMode,isBooked,isPaymentPage);
 
 @override
 String toString() {
-  return 'Settings(allowPayment: $allowPayment, slots: $slots, selectedSlot: $selectedSlot, isUrgent: $isUrgent, isLoggedIn: $isLoggedIn, isUMLMode: $isUMLMode)';
+  return 'Settings(allowPayment: $allowPayment, slots: $slots, selectedSlot: $selectedSlot, isUrgent: $isUrgent, isLoggedIn: $isLoggedIn, isUMLMode: $isUMLMode, isBooked: $isBooked, isPaymentPage: $isPaymentPage)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $SettingsCopyWith<$Res>  {
   factory $SettingsCopyWith(Settings value, $Res Function(Settings) _then) = _$SettingsCopyWithImpl;
 @useResult
 $Res call({
- bool allowPayment, List<String> slots, int selectedSlot, bool isUrgent, bool isLoggedIn, bool isUMLMode
+ bool allowPayment, List<String> slots, int selectedSlot, TriState isUrgent, bool isLoggedIn, bool isUMLMode, bool isBooked, bool isPaymentPage
 });
 
 
@@ -63,14 +63,16 @@ class _$SettingsCopyWithImpl<$Res>
 
 /// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? allowPayment = null,Object? slots = null,Object? selectedSlot = null,Object? isUrgent = null,Object? isLoggedIn = null,Object? isUMLMode = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? allowPayment = null,Object? slots = null,Object? selectedSlot = null,Object? isUrgent = null,Object? isLoggedIn = null,Object? isUMLMode = null,Object? isBooked = null,Object? isPaymentPage = null,}) {
   return _then(_self.copyWith(
 allowPayment: null == allowPayment ? _self.allowPayment : allowPayment // ignore: cast_nullable_to_non_nullable
 as bool,slots: null == slots ? _self.slots : slots // ignore: cast_nullable_to_non_nullable
 as List<String>,selectedSlot: null == selectedSlot ? _self.selectedSlot : selectedSlot // ignore: cast_nullable_to_non_nullable
 as int,isUrgent: null == isUrgent ? _self.isUrgent : isUrgent // ignore: cast_nullable_to_non_nullable
-as bool,isLoggedIn: null == isLoggedIn ? _self.isLoggedIn : isLoggedIn // ignore: cast_nullable_to_non_nullable
+as TriState,isLoggedIn: null == isLoggedIn ? _self.isLoggedIn : isLoggedIn // ignore: cast_nullable_to_non_nullable
 as bool,isUMLMode: null == isUMLMode ? _self.isUMLMode : isUMLMode // ignore: cast_nullable_to_non_nullable
+as bool,isBooked: null == isBooked ? _self.isBooked : isBooked // ignore: cast_nullable_to_non_nullable
+as bool,isPaymentPage: null == isPaymentPage ? _self.isPaymentPage : isPaymentPage // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -82,7 +84,7 @@ as bool,
 
 
 class _Settings implements Settings {
-  const _Settings({required this.allowPayment, required final  List<String> slots, required this.selectedSlot, required this.isUrgent, required this.isLoggedIn, required this.isUMLMode}): _slots = slots;
+  const _Settings({required this.allowPayment, required final  List<String> slots, required this.selectedSlot, required this.isUrgent, required this.isLoggedIn, required this.isUMLMode, required this.isBooked, required this.isPaymentPage}): _slots = slots;
   
 
 @override final  bool allowPayment;
@@ -94,9 +96,11 @@ class _Settings implements Settings {
 }
 
 @override final  int selectedSlot;
-@override final  bool isUrgent;
+@override final  TriState isUrgent;
 @override final  bool isLoggedIn;
 @override final  bool isUMLMode;
+@override final  bool isBooked;
+@override final  bool isPaymentPage;
 
 /// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
@@ -108,16 +112,16 @@ _$SettingsCopyWith<_Settings> get copyWith => __$SettingsCopyWithImpl<_Settings>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Settings&&(identical(other.allowPayment, allowPayment) || other.allowPayment == allowPayment)&&const DeepCollectionEquality().equals(other._slots, _slots)&&(identical(other.selectedSlot, selectedSlot) || other.selectedSlot == selectedSlot)&&(identical(other.isUrgent, isUrgent) || other.isUrgent == isUrgent)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn)&&(identical(other.isUMLMode, isUMLMode) || other.isUMLMode == isUMLMode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Settings&&(identical(other.allowPayment, allowPayment) || other.allowPayment == allowPayment)&&const DeepCollectionEquality().equals(other._slots, _slots)&&(identical(other.selectedSlot, selectedSlot) || other.selectedSlot == selectedSlot)&&(identical(other.isUrgent, isUrgent) || other.isUrgent == isUrgent)&&(identical(other.isLoggedIn, isLoggedIn) || other.isLoggedIn == isLoggedIn)&&(identical(other.isUMLMode, isUMLMode) || other.isUMLMode == isUMLMode)&&(identical(other.isBooked, isBooked) || other.isBooked == isBooked)&&(identical(other.isPaymentPage, isPaymentPage) || other.isPaymentPage == isPaymentPage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,allowPayment,const DeepCollectionEquality().hash(_slots),selectedSlot,isUrgent,isLoggedIn,isUMLMode);
+int get hashCode => Object.hash(runtimeType,allowPayment,const DeepCollectionEquality().hash(_slots),selectedSlot,isUrgent,isLoggedIn,isUMLMode,isBooked,isPaymentPage);
 
 @override
 String toString() {
-  return 'Settings(allowPayment: $allowPayment, slots: $slots, selectedSlot: $selectedSlot, isUrgent: $isUrgent, isLoggedIn: $isLoggedIn, isUMLMode: $isUMLMode)';
+  return 'Settings(allowPayment: $allowPayment, slots: $slots, selectedSlot: $selectedSlot, isUrgent: $isUrgent, isLoggedIn: $isLoggedIn, isUMLMode: $isUMLMode, isBooked: $isBooked, isPaymentPage: $isPaymentPage)';
 }
 
 
@@ -128,7 +132,7 @@ abstract mixin class _$SettingsCopyWith<$Res> implements $SettingsCopyWith<$Res>
   factory _$SettingsCopyWith(_Settings value, $Res Function(_Settings) _then) = __$SettingsCopyWithImpl;
 @override @useResult
 $Res call({
- bool allowPayment, List<String> slots, int selectedSlot, bool isUrgent, bool isLoggedIn, bool isUMLMode
+ bool allowPayment, List<String> slots, int selectedSlot, TriState isUrgent, bool isLoggedIn, bool isUMLMode, bool isBooked, bool isPaymentPage
 });
 
 
@@ -145,14 +149,16 @@ class __$SettingsCopyWithImpl<$Res>
 
 /// Create a copy of Settings
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? allowPayment = null,Object? slots = null,Object? selectedSlot = null,Object? isUrgent = null,Object? isLoggedIn = null,Object? isUMLMode = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? allowPayment = null,Object? slots = null,Object? selectedSlot = null,Object? isUrgent = null,Object? isLoggedIn = null,Object? isUMLMode = null,Object? isBooked = null,Object? isPaymentPage = null,}) {
   return _then(_Settings(
 allowPayment: null == allowPayment ? _self.allowPayment : allowPayment // ignore: cast_nullable_to_non_nullable
 as bool,slots: null == slots ? _self._slots : slots // ignore: cast_nullable_to_non_nullable
 as List<String>,selectedSlot: null == selectedSlot ? _self.selectedSlot : selectedSlot // ignore: cast_nullable_to_non_nullable
 as int,isUrgent: null == isUrgent ? _self.isUrgent : isUrgent // ignore: cast_nullable_to_non_nullable
-as bool,isLoggedIn: null == isLoggedIn ? _self.isLoggedIn : isLoggedIn // ignore: cast_nullable_to_non_nullable
+as TriState,isLoggedIn: null == isLoggedIn ? _self.isLoggedIn : isLoggedIn // ignore: cast_nullable_to_non_nullable
 as bool,isUMLMode: null == isUMLMode ? _self.isUMLMode : isUMLMode // ignore: cast_nullable_to_non_nullable
+as bool,isBooked: null == isBooked ? _self.isBooked : isBooked // ignore: cast_nullable_to_non_nullable
+as bool,isPaymentPage: null == isPaymentPage ? _self.isPaymentPage : isPaymentPage // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }

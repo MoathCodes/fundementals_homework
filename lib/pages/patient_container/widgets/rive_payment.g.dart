@@ -1,27 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_page.dart';
+part of 'rive_payment.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authLoginHash() => r'6801eef9b4b99fde8a23a9a2dca878fd91e19f20';
+String _$rivePaymentNotifierHash() =>
+    r'9054717bd6c8282b28103b97609427ddd8a6c8c3';
 
-/// See also [AuthLogin].
-@ProviderFor(AuthLogin)
-final authLoginProvider =
-    AutoDisposeAsyncNotifierProvider<AuthLogin, bool>.internal(
-      AuthLogin.new,
-      name: r'authLoginProvider',
+/// See also [RivePaymentNotifier].
+@ProviderFor(RivePaymentNotifier)
+final rivePaymentNotifierProvider =
+    AutoDisposeNotifierProvider<RivePaymentNotifier, double>.internal(
+      RivePaymentNotifier.new,
+      name: r'rivePaymentNotifierProvider',
       debugGetCreateSourceHash:
           const bool.fromEnvironment('dart.vm.product')
               ? null
-              : _$authLoginHash,
+              : _$rivePaymentNotifierHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$AuthLogin = AutoDisposeAsyncNotifier<bool>;
+typedef _$RivePaymentNotifier = AutoDisposeNotifier<double>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

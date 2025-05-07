@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fundementals_homework/core/settings/settings_provider.dart';
+import 'package:fundementals_homework/pages/patient_container/widgets/rive_login.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 
@@ -18,16 +19,26 @@ class AuthLogin extends _$AuthLogin {
     const correctEmail = "ahmed@example.com";
     const correctPassword = "password";
 
+    final bool isCorrect = email == correctEmail && password == correctPassword;
+
     // Indicate loading state
     state = const AsyncValue.loading();
 
+    if (isCorrect) {
+      ref.read(riveLoginProvider.notifier).setValue(1);
+    } else {
+      ref.read(riveLoginProvider.notifier).setValue(2);
+    }
     // Simulate network delay
     await Future.delayed(const Duration(seconds: 3));
 
-    if (email == correctEmail && password == correctPassword) {
+    if (isCorrect) {
+      ref.read(riveLoginProvider.notifier).setValue(0);
       ref.read(settingsNotifierProvider.notifier).setIsLoggedIn(true);
       state = const AsyncValue.data(true);
     } else {
+      ref.read(riveLoginProvider.notifier).setValue(0);
+
       // Failure → update to error
       state = AsyncValue.error(
         "Email or password is incorrect.",
@@ -69,7 +80,6 @@ class LoginPage extends ConsumerWidget {
       ],
       child: Form(
         onSubmit: (context, values) {
-          // Use ref.read for calling login (side-effect) :contentReference[oaicite:6]{index=6}
           ref
               .read(authLoginProvider.notifier)
               .login(values[_emailKey], values[_passwordKey]);
@@ -80,7 +90,7 @@ class LoginPage extends ConsumerWidget {
             const Gap(24),
             if (error != null) ...[
               Alert.destructive(
-                title: const Text("Error In Request"),
+                title: const Text("Invalid Credentials"),
                 content: Text(error!),
               ),
             ],

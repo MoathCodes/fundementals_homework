@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fundementals_homework/core/router/route.dart';
 import 'package:fundementals_homework/pages/doctor_page.dart';
 import 'package:fundementals_homework/pages/not_found_page.dart';
-import 'package:fundementals_homework/pages/patient_page_container.dart';
+import 'package:fundementals_homework/pages/patient_container/patient_page_container.dart';
 import 'package:fundementals_homework/widget/shell_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
