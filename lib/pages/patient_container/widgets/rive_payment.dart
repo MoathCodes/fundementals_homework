@@ -50,7 +50,7 @@ class _RiveDashboardWidgetState extends ConsumerState<RivePaymentWidget> {
           height: 400,
           width: 400,
           child: RiveAnimation.asset(
-            'Animation.riv',
+            'assets/Animation.riv',
             artboard: 'Payment',
             stateMachines: const ['State Machine 1'],
             onInit: _onRiveInit,

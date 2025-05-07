@@ -46,7 +46,7 @@ class _RiveLoginWidgetState extends ConsumerState<RiveLoginWidget> {
           height: 400,
           width: 400,
           child: RiveAnimation.asset(
-            'Animation.riv',
+            'assets/Animation.riv',
             artboard: 'Login',
             stateMachines: const ['State Machine 1'],
             onInit: _onRiveInit,

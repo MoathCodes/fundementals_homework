@@ -8,8 +8,6 @@ import 'package:go_router/go_router.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 import 'package:web/web.dart' as html;
 
-
-
 class ShellWidget extends ConsumerStatefulWidget {
   final Widget child;
   const ShellWidget({super.key, required this.child});
@@ -57,7 +55,9 @@ class _AboutDialog extends StatelessWidget {
                   leading: Icon(BootstrapIcons.download),
                   child: Text("Download Full UML"),
                   onPressed: () async {
-                    final ByteData bytes = await rootBundle.load(r'UML.svg');
+                    final ByteData bytes = await rootBundle.load(
+                      r'assets/UML.svg',
+                    );
                     final list = bytes.buffer.asUint8List().buffer.toJS;
                     final blob = html.Blob([list].toJS);
                     final url = html.URL.createObjectURL(blob);
@@ -73,7 +73,9 @@ class _AboutDialog extends StatelessWidget {
                   leading: Icon(BootstrapIcons.paperclip),
                   child: Text("PDF homework"),
                   onPressed: () async {
-                    final ByteData bytes = await rootBundle.load(r'HW.pdf');
+                    final ByteData bytes = await rootBundle.load(
+                      r'assets/HW.pdf',
+                    );
                     final list = bytes.buffer.asUint8List().buffer.toJS;
                     final blob = html.Blob(
                       [list].toJS,

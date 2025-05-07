@@ -96,7 +96,7 @@ class Dashboard extends StatelessWidget {
                     (69.420 - (69.420 * 0.130434783)).toStringAsFixed(2),
                   ).xSmall.muted,
                   SvgPicture.asset(
-                    r'Saudi_Riyal_Symbol.svg',
+                    r'assets/Saudi_Riyal_Symbol.svg',
                     color: Colors.gray.shade400,
                     height: 16,
                     width: 16,
@@ -114,7 +114,7 @@ class Dashboard extends StatelessWidget {
                 children: [
                   Text((69.420 * 0.130434783).toStringAsFixed(2)).xSmall.muted,
                   SvgPicture.asset(
-                    r'Saudi_Riyal_Symbol.svg',
+                    r'assets/Saudi_Riyal_Symbol.svg',
                     color: Colors.gray.shade400,
 
                     height: 16,
@@ -132,7 +132,7 @@ class Dashboard extends StatelessWidget {
                 children: [
                   Text('${69.420}', style: TextStyle(color: Colors.green)),
                   SvgPicture.asset(
-                    r'Saudi_Riyal_Symbol.svg',
+                    r'assets/Saudi_Riyal_Symbol.svg',
                     color: Colors.green,
 
                     height: 16,
