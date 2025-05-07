@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fundementals_homework/core/router/route_provider.dart';
 import 'package:fundementals_homework/core/settings/settings_provider.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shadcn_flutter/shadcn_flutter.dart';
 import 'package:web/web.dart' as html;
 
